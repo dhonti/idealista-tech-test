@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/home_navigation"
+    app:startDestination="@id/list_users"
+    >
+
+    <fragment
+        android:id="@+id/list_users"
+        android:label="list_users"
+        android:name="com.axpec.mvvmcleankotlinflow.presentation.features.home.listusers.ListUsersFragment"
+        tools:layout="@layout/fragment_users_list">
+
+        <action
+            android:id="@+id/action_list_users_to_detail_user"
+            app:destination="@id/detail_user"
+            app:enterAnim="@anim/slide_left"
+            app:exitAnim="@anim/wait_anim"
+            app:popEnterAnim="@anim/wait_anim"
+            app:popExitAnim="@anim/slide_right"
+            />
+
+        <action
+            android:id="@+id/action_list_users_to_register_user"
+            app:destination="@id/register_user"
+            />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/detail_user"
+        android:label="detail_user"
+        android:name="com.axpec.mvvmcleankotlinflow.presentation.features.home.detailuser.DetailUserFragment"
+        tools:layout="@layout/fragment_detail_user"
+        >
+
+        <argument
+            android:name="user"
+            app:argType="com.axpec.mvvmcleankotlinflow.data.remote.entity.UserEntityModel"
+            app:nullable="true"
+            android:defaultValue="@null"
+            />
+
+    </fragment>
+
+    <dialog
+        android:id="@+id/register_user"
+        android:name="com.axpec.mvvmcleankotlinflow.presentation.features.home.registeruser.RegisterUserDialog"
+        tools:layout="@layout/dialog_register_user">
+
+    </dialog>
+
+</navigation>

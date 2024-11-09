@@ -1,0 +1,3 @@
+package com.dhontiveros.idealistatechtest.presentation.base
+
+interface BaseUIEffect
