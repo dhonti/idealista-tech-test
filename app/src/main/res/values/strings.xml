@@ -9,5 +9,5 @@
     <string name="exception_general">An error occurred while performing the requested operation</string>
     <string name="exception_request">The indicated operation could not be performed</string>
 
-    <string name="empty_list">Current properties list is empty</string>
+    <string name="empty_list">Current properties list are empty</string>
 </resources>

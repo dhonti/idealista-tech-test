@@ -9,9 +9,9 @@ import com.dhontiveros.idealistatechtest.presentation.base.BaseUIEffect
 class ListContract {
 
     sealed class ListsState {
-        data object Idle : ListsState()
-        data object Loading : ListsState()
-        data object Done : ListsState()
+        object Idle : ListsState()
+        object Loading : ListsState()
+        object Done : ListsState()
     }
 
     data class State(

@@ -5,6 +5,10 @@
 
     <data>
         <variable
+            name="viewModel"
+            type="com.dhontiveros.idealistatechtest.presentation.features.list.ListViewModel" />
+
+        <variable
             name="showList"
             type="Boolean" />
     </data>

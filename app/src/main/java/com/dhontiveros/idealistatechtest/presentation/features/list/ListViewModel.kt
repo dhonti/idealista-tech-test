@@ -14,8 +14,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class ListViewModel @Inject constructor(
-    private val getUsersUC: GetProperties,
-    private val getUserByEmailUC: GetPropertyById
+    private val getProperties: GetProperties,
+    private val getPropertyById: GetPropertyById
 ) : BaseViewModel<ListContract.State, ListContract.Effect>() {
 
     init {
@@ -27,9 +27,9 @@ class ListViewModel @Inject constructor(
 
     fun getUsersList() {
         viewModelScope.launch {
-            getUsersUC.execute(null)
+            getProperties.execute(null)
                 .onStart { emit(Resource.Loading) }
-                .collect() {
+                .collect {
                     when (it) {
                         is Resource.Loading -> {
                             setState { copy(listPropertiesState = ListContract.ListsState.Loading) }
@@ -68,7 +68,7 @@ class ListViewModel @Inject constructor(
 
     fun getPropertyById(id: Int) {
         viewModelScope.launch {
-            getUserByEmailUC.execute(id)
+            getPropertyById.execute(id)
                 .onStart { emit(Resource.Loading) }
                 .collect {
                     when (it) {

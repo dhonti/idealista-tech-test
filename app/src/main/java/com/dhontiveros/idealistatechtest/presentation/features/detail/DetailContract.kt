@@ -6,9 +6,9 @@ import com.dhontiveros.idealistatechtest.domain.models.PropertyDetail
 class DetailContract {
 
     sealed class DetailState {
-        data object Idle : DetailState()
-        data object Loading : DetailState()
-        data object Done : DetailState()
+        object Idle : DetailState()
+        object Loading : DetailState()
+        object Done : DetailState()
     }
 
     // -----------------------------------------------------------------------------------

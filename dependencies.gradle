@@ -1,0 +1,105 @@
+ext {
+    appPlugins = [
+            'com.android.application',
+            'org.jetbrains.kotlin.android',
+            'kotlin-kapt',
+            'com.google.dagger.hilt.android',
+            'kotlin-parcelize',
+            "androidx.navigation.safeargs"
+    ]
+
+    config = [
+            compileSdkVersion : 34,
+            buildToolsVersion : "34.0.0",
+            applicationId : "com.dhontiveros.idealistatechtest",
+            minSdkVersion : 25,
+            targetSdkVersion : 34
+    ]
+
+    versions = [
+            kotlin : '1.8.0',
+            appCompat : '1.5.0',
+            material : '1.6.1',
+            navigation: '2.5.1',
+            fragment: '1.5.1',
+            daggerHilt : '2.43.2',
+            kotlinCoroutines : '1.6.4',
+            retrofit : '2.9.0',
+            okHttp : '4.10.0',
+            moshi : '1.13.0',
+            javaxInject : '1',
+            coil : '2.2.0',
+            swipeRefresh : '1.1.0',
+            timber : '5.0.1',
+            room : '2.4.3',
+
+            junit : '4.13.2',
+            junitTest : '1.1.3',
+            espresso : '3.4.0'
+    ]
+
+    implementationLibs = [
+            androidLibs = [
+                    coreKtx : "androidx.core:core-ktx:${versions.kotlin}",
+                    appCompat : "androidx.appcompat:appcompat:${versions.appCompat}",
+                    material : "com.google.android.material:material:${versions.material}",
+                    kotlinCoroutines: "org.jetbrains.kotlinx:kotlinx-coroutines-android:${versions.kotlinCoroutines}",
+                    fragment: "androidx.fragment:fragment-ktx:${versions.fragment}",
+                    javaxInject: "javax.inject:javax.inject:${versions.javaxInject}"
+            ],
+            navigationLibs = [
+                    navigationFragment: "androidx.navigation:navigation-fragment-ktx:${versions.navigation}",
+                    navigationUI: "androidx.navigation:navigation-ui-ktx:${versions.navigation}",
+                    navigationFeatures: "androidx.navigation:navigation-dynamic-features-fragment:${versions.navigation}"
+            ],
+            daggerHilt = [
+                    impl : "com.google.dagger:hilt-android:${versions.daggerHilt}",
+            ],
+            apiServices = [
+                    retrofit : "com.squareup.retrofit2:retrofit:${versions.retrofit}",
+                    retrofitMoshiConverter : "com.squareup.retrofit2:converter-moshi:${versions.retrofit}",
+                    okHttp : "com.squareup.okhttp3:okhttp:${versions.okHttp}",
+                    okHttpLogging : "com.squareup.okhttp3:logging-interceptor:${versions.okHttp}",
+
+                    moshi : "com.squareup.moshi:moshi:${versions.moshi}",
+                    moshiAdapter : "com.squareup.moshi:moshi-adapters:${versions.moshi}",
+            ],
+            utilities = [
+                    coil : "io.coil-kt:coil:${versions.coil}",
+                    swipeRefresh: "androidx.swiperefreshlayout:swiperefreshlayout:${versions.swipeRefresh}",
+                    timber : "com.jakewharton.timber:timber:${versions.timber}"
+            ],
+            persistence = [
+                    room : "androidx.room:room-runtime:${versions.room}",
+                    roomKtx: "androidx.room:room-ktx:${versions.room}"
+            ]
+
+    ]
+
+    annotationProcessorLibs = [
+            persistence = [
+                    room : "androidx.room:room-compiler:${versions.room}"
+            ]
+    ]
+
+    kaptLibs = [
+            daggerHilt = [
+                    kapt : "com.google.dagger:hilt-compiler:${versions.daggerHilt}",
+            ],
+            moshi = [
+                    kapt : "com.squareup.moshi:moshi-kotlin-codegen:${versions.moshi}"
+            ],
+            persistence = [
+                    room : "androidx.room:room-compiler:${versions.room}"
+            ]
+    ]
+
+    testLibs = [
+            junit : "junit:junit:${versions.junit}"
+    ]
+
+    androidTestLibs = [
+            junit : "androidx.test.ext:junit:${versions.junitTest}",
+            espresso : "androidx.test.espresso:espresso-core:${versions.espresso}"
+    ]
+}
