@@ -4,6 +4,9 @@ kotlin = "2.0.20"
 coreKtx = "1.15.0"
 navigation = "2.8.3"
 lifecycle = "2.8.7"
+multidex = "2.0.1"
+constraintlayout = "2.2.0"
+swiperefreshlayout = "1.1.0"
 # Test
 junit = "4.13.2"
 junitVersion = "1.2.1"
@@ -28,7 +31,6 @@ moshi = "1.15.1"
 okhttp = "4.12.0"
 retrofit = "2.11.0"
 activity = "1.9.3"
-constraintlayout = "2.2.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -39,9 +41,10 @@ androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 androidx-navigation-fragment = { group = "androidx.navigation", name = "navigation-fragment", version.ref = "navigation" }
 androidx-navigation-ui = { group = "androidx.navigation", name = "navigation-ui", version.ref = "navigation" }
-
+androidx-multidex = { group = "androidx.multidex", name = "multidex", version.ref = "multidex" }
 androidx-lifecycle-viewmodel = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "lifecycle"}
 androidx-lifecycle-livedata = { group = "androidx.lifecycle", name = "lifecycle-livedata-ktx", version.ref = "lifecycle"}
+androidx-swiperefreshlayout = { group = "androidx.swiperefreshlayout", name = "swiperefreshlayout", version.ref = "swiperefreshlayout"}
 
 android-gradle-plugin = { module = "com.android.tools.build:gradle", version.ref = "agp" }
 kotlin-gradle-version = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }

@@ -49,6 +49,8 @@ dependencies {
     implementation(libs.material)
     implementation(libs.androidx.lifecycle.viewmodel)
     implementation(libs.androidx.lifecycle.livedata)
+    implementation(libs.androidx.multidex)
+    implementation(libs.androidx.swiperefreshlayout)
 
     // Hilt
     implementation(libs.hilt.android.main)

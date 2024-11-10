@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Idealista Tech Test</string>
+
+    <string name="empty_list">El listado de propiedades es vacío</string>
 </resources>
