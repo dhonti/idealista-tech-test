@@ -71,7 +71,7 @@ class ListFragment : BaseFragmentVM<FragmentListBinding, ListViewModel>(R.layout
                     value.arguments
 
                     val action = ListFragmentDirections.actionListToDetail()
-//                    action.item = it.item
+                    action.item = it.item
                     findNavController().navigate(action)
                 }
             }
