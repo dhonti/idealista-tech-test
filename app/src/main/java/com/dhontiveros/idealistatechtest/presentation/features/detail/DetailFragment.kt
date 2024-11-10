@@ -12,11 +12,18 @@ import dagger.hilt.android.AndroidEntryPoint
 class DetailFragment :
     BaseFragmentVM<FragmentDetailBinding, DetailViewModel>(R.layout.fragment_detail) {
 
+    private var isExpanded = false
+
     override fun getViewModelClass(): Class<DetailViewModel> = DetailViewModel::class.java
 
     private val args: DetailFragmentArgs by navArgs()
 
     override fun initViewComponents() {
+        initAuxComponents()
+        initMainViewItem()
+    }
+
+    private fun initMainViewItem() {
         args.item?.also { item ->
             val imageAdapter = ImageCarouselAdapter(item.multimedia.images.map { it.url })
             binding.vpCarousel.apply {
@@ -27,5 +34,21 @@ class DetailFragment :
         }
     }
 
+    private fun initAuxComponents() {
+        binding.btToggleText.setOnClickListener {
+            isExpanded = !isExpanded
+            if (isExpanded) {
+                binding.tvDescription.maxLines = Int.MAX_VALUE
+                binding.btToggleText.text = getString(R.string.button_show_more)
+            } else {
+                binding.tvDescription.maxLines = MAX_LINES_DESCRIPTION
+                binding.btToggleText.text = getString(R.string.button_show_less)
+            }
 
+        }
+    }
+
+    companion object {
+        private const val MAX_LINES_DESCRIPTION = 5
+    }
 }

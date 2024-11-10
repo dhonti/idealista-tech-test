@@ -2,6 +2,7 @@ package com.dhontiveros.idealistatechtest.domain.models
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
+import java.text.NumberFormat
 import java.util.Locale
 
 @Parcelize
@@ -23,12 +24,7 @@ data class PropertyDetail(
 ) : Parcelable {
     fun adidValue(): String = adid.toString()
 
-    fun priceValue(): String = String.format(
-        Locale.getDefault(),
-        "%.3f %s",
-        priceInfoDetail.amount,
-        priceInfoDetail.currencySuffix
-    )
+    fun priceValue(): String = priceInfoDetail.toValue()
 }
 
 @Parcelize
@@ -91,3 +87,17 @@ data class Ubication(
     val latitude: Double,
     val longitude: Double
 ) : Parcelable
+
+fun PriceInfoDetail.toValue(): String {
+    val formatter = NumberFormat.getNumberInstance(Locale.GERMANY).apply {
+        maximumFractionDigits = 0
+        isGroupingUsed = true
+    }
+    val priceNumber = formatter.format(this.amount)
+    return String.format(
+        Locale.getDefault(),
+        "%s %s",
+        priceNumber,
+        this.currencySuffix
+    )
+}
