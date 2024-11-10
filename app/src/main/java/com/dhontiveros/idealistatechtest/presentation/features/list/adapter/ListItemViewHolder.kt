@@ -1,5 +1,6 @@
 package com.dhontiveros.idealistatechtest.presentation.features.list.adapter
 
+import coil.load
 import com.dhontiveros.idealistatechtest.databinding.RowListItemBinding
 import com.dhontiveros.idealistatechtest.domain.models.PropertyListItem
 import com.dhontiveros.idealistatechtest.presentation.base.listadapter.BaseViewHolder
@@ -18,6 +19,7 @@ class ListItemViewHolder(
     override fun bind() {
         getRowItem()?.let { item ->
             binding.item = item
+            binding.ivItem.load(item.thumbnail)
             binding.executePendingBindings()
         }
     }
