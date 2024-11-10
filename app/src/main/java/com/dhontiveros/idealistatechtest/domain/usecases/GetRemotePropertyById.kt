@@ -12,7 +12,7 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import javax.inject.Inject
 
-class GetPropertyById @Inject constructor(
+class GetRemotePropertyById @Inject constructor(
     @IODispatcher private val dispatcherIO: CoroutineDispatcher,
     private val repository: PropertyRepository
 ) : BaseUseCase<PropertyDetail, Int?>() {

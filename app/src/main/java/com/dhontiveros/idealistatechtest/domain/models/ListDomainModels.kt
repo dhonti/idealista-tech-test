@@ -1,6 +1,7 @@
 package com.dhontiveros.idealistatechtest.domain.models
 
 import android.os.Parcelable
+import com.dhontiveros.idealistatechtest.data.local.entity.PropertyLocalModel
 import kotlinx.parcelize.Parcelize
 import java.text.NumberFormat
 import java.util.Locale
@@ -9,28 +10,28 @@ import java.util.Locale
 data class PropertyListItem(
     val propertyCode: String,
     val thumbnail: String,
-    val floor: String,
-    val price: Double,
+    val floor: String? = null,
+    val price: Double? = null,
     val priceInfo: PriceInfo,
     val propertyType: String,
-    val operation: String,
+    val operation: String? = null,
     val size: Double,
-    val exterior: Boolean,
+    val exterior: Boolean? = null,
     val rooms: Long,
     val bathrooms: Long,
     val address: String,
     val province: String,
     val municipality: String,
     val district: String,
-    val country: String,
-    val neighborhood: String,
-    val latitude: Double,
-    val longitude: Double,
-    val description: String,
-    val multimedia: Multimedia,
-    val features: Features,
+    val country: String? = null,
+    val neighborhood: String? = null,
+    val latitude: Double? = null,
+    val longitude: Double? = null,
+    val description: String? = null,
+    val multimedia: Multimedia? = null,
+    val features: Features? = null,
 ) : Parcelable {
-    fun priceValue(): String = priceInfo.toValue()
+    fun priceValue(): String = priceInfo.toValue().orEmpty()
     fun surfaceValue(): String {
         val formatter = NumberFormat.getNumberInstance(Locale.GERMANY).apply {
             maximumFractionDigits = 0
@@ -82,3 +83,16 @@ fun PriceInfo.toValue(): String {
         this.price.currencySuffix
     )
 }
+
+fun PropertyListItem.toLocalData() = PropertyLocalModel(
+    code = propertyCode,
+    thumbnail = thumbnail,
+    province = province,
+    rooms = rooms,
+    bathrooms = bathrooms,
+    type = propertyType,
+    district = district,
+    address = address,
+    municipality = municipality,
+    size = size
+)

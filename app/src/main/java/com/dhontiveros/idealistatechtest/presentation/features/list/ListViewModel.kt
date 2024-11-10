@@ -3,8 +3,8 @@ package com.dhontiveros.idealistatechtest.presentation.features.list
 import androidx.lifecycle.viewModelScope
 import com.dhontiveros.idealistatechtest.core.common.Resource
 import com.dhontiveros.idealistatechtest.domain.models.PropertyListItem
-import com.dhontiveros.idealistatechtest.domain.usecases.GetProperties
-import com.dhontiveros.idealistatechtest.domain.usecases.GetPropertyById
+import com.dhontiveros.idealistatechtest.domain.usecases.GetRemoteProperties
+import com.dhontiveros.idealistatechtest.domain.usecases.GetRemotePropertyById
 import com.dhontiveros.idealistatechtest.presentation.base.BaseUIErrorEffect
 import com.dhontiveros.idealistatechtest.presentation.base.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -14,8 +14,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class ListViewModel @Inject constructor(
-    private val getProperties: GetProperties,
-    private val getPropertyById: GetPropertyById
+    private val getRemoteProperties: GetRemoteProperties,
+    private val getRemotePropertyById: GetRemotePropertyById
 ) : BaseViewModel<ListContract.State, ListContract.Effect>() {
 
     init {
@@ -27,7 +27,7 @@ class ListViewModel @Inject constructor(
 
     fun getUsersList() {
         viewModelScope.launch {
-            getProperties.execute(null)
+            getRemoteProperties.execute(null)
                 .onStart { emit(Resource.Loading) }
                 .collect {
                     when (it) {
@@ -68,7 +68,7 @@ class ListViewModel @Inject constructor(
 
     fun getPropertyById(id: Int) {
         viewModelScope.launch {
-            getPropertyById.execute(id)
+            getRemotePropertyById.execute(id)
                 .onStart { emit(Resource.Loading) }
                 .collect {
                     when (it) {

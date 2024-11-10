@@ -2,7 +2,7 @@ package com.dhontiveros.idealistatechtest.presentation.features.detail
 
 import androidx.lifecycle.viewModelScope
 import com.dhontiveros.idealistatechtest.core.common.Resource
-import com.dhontiveros.idealistatechtest.domain.usecases.GetPropertyById
+import com.dhontiveros.idealistatechtest.domain.usecases.GetRemotePropertyById
 import com.dhontiveros.idealistatechtest.presentation.base.BaseUIErrorEffect
 import com.dhontiveros.idealistatechtest.presentation.base.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -12,7 +12,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class DetailViewModel @Inject constructor(
-    private val getUserById: GetPropertyById
+    private val getUserById: GetRemotePropertyById
 ) : BaseViewModel<DetailContract.State, Nothing>() {
 
     override fun createInitialState(): DetailContract.State =
