@@ -2,6 +2,7 @@ package com.dhontiveros.idealistatechtest.data.repository
 
 import com.dhontiveros.idealistatechtest.core.common.Resource
 import com.dhontiveros.idealistatechtest.data.remote.datasource.PropertyRemoteDs
+import com.dhontiveros.idealistatechtest.domain.models.PropertyDetail
 import com.dhontiveros.idealistatechtest.domain.models.PropertyListItem
 import com.dhontiveros.idealistatechtest.domain.repository.PropertyRepository
 import kotlinx.coroutines.flow.Flow
@@ -17,7 +18,7 @@ class PropertyRepositoryImpl @Inject constructor(
         emit(remoteDataSource.getRemoteList())
     }
 
-    override suspend fun getRemoteDetail(id: Int): Flow<Resource<PropertyListItem>> = flow {
+    override suspend fun getRemoteDetail(id: Int): Flow<Resource<PropertyDetail>> = flow {
         emit(Resource.Loading)
         emit(remoteDataSource.getRemoteDetail(id))
     }

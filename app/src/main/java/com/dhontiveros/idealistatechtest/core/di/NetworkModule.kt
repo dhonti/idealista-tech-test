@@ -1,6 +1,6 @@
 package com.dhontiveros.idealistatechtest.core.di
 
-import com.dhontiveros.idealistatechtest.BuildConfig
+//import com.dhontiveros.idealistatechtest.BuildConfig
 import com.dhontiveros.idealistatechtest.data.remote.api.ApiService
 import dagger.Module
 import dagger.Provides
@@ -23,10 +23,10 @@ class NetworkModule {
     @Provides
     fun provideLoggingInterceptor(): HttpLoggingInterceptor {
         val httpLoggingInterceptor = HttpLoggingInterceptor()
-        if (BuildConfig.DEBUG)
-            httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
-        else
-            httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.NONE
+//        if (BuildConfig.DEBUG)
+//            httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
+//        else
+//            httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.NONE
         return httpLoggingInterceptor
     }
 

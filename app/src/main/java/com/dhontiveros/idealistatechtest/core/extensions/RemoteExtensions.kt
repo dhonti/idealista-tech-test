@@ -1,6 +1,7 @@
-package com.dhontiveros.idealistatechtest.domain.exceptions
+package com.dhontiveros.idealistatechtest.core.extensions
 
 import com.dhontiveros.idealistatechtest.core.common.Resource
+import com.dhontiveros.idealistatechtest.domain.exceptions.AppException
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext
 import retrofit2.HttpException

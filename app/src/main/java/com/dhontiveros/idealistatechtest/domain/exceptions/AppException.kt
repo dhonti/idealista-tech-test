@@ -1,19 +1,16 @@
 package com.dhontiveros.idealistatechtest.domain.exceptions
 
 sealed class AppException : Exception() {
-    object EmptyException : AppException()
-
-    // USER:
-    object CheckRemoveUserException: AppException()
+    data object EmptyException : AppException()
 
     // REMOTE
-    object RequestException : AppException()
-    object BadRequestException : AppException()
-    object ConnectionException : AppException()
-    object ServerErrorException : AppException()
+    data object RequestException : AppException()
+    data object BadRequestException : AppException()
+    data object ConnectionException : AppException()
+    data object ServerErrorException : AppException()
 
     // LOCAL
-    object LocalDBException : AppException()
+    data object LocalDBException : AppException()
 
-    object GeneralException : AppException()
+    data object GeneralException : AppException()
 }

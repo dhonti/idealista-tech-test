@@ -1,4 +1,4 @@
-package com.dhontiveros.idealistatechtest.domain.exceptions
+package com.dhontiveros.idealistatechtest.core.extensions
 
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner

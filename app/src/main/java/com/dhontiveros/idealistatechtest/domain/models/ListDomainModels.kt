@@ -1,5 +1,7 @@
 package com.dhontiveros.idealistatechtest.domain.models
 
+import java.util.Locale
+
 data class PropertyListItem(
     val propertyCode: String,
     val thumbnail: String,
@@ -23,7 +25,14 @@ data class PropertyListItem(
     val description: String,
     val multimedia: Multimedia,
     val features: Features,
-)
+) {
+    fun priceValue(): String = String.format(
+        Locale.getDefault(),
+        "%.3f %s",
+        priceInfo.price.amount,
+        priceInfo.price.currencySuffix
+    )
+}
 
 
 data class PriceInfo(

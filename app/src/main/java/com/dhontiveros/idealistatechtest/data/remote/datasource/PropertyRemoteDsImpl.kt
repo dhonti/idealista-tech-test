@@ -1,9 +1,10 @@
 package com.dhontiveros.idealistatechtest.data.remote.datasource
 
 import com.dhontiveros.idealistatechtest.core.common.Resource
+import com.dhontiveros.idealistatechtest.core.extensions.callApi
 import com.dhontiveros.idealistatechtest.data.remote.api.ApiService
 import com.dhontiveros.idealistatechtest.data.remote.model.toDomain
-import com.dhontiveros.idealistatechtest.domain.exceptions.callApi
+import com.dhontiveros.idealistatechtest.domain.models.PropertyDetail
 import com.dhontiveros.idealistatechtest.domain.models.PropertyListItem
 import com.dhontiveros.idealistatechtest.domain.qualifiers.IODispatcher
 import kotlinx.coroutines.CoroutineDispatcher
@@ -22,7 +23,7 @@ class PropertyRemoteDsImpl @Inject constructor(
         }
     )
 
-    override suspend fun getRemoteDetail(id: Int): Resource<PropertyListItem> = callApi(
+    override suspend fun getRemoteDetail(id: Int): Resource<PropertyDetail> = callApi(
         dispatcherIO,
         apiRequest = { apiService.getDetailProperty() },
         transform = { it.toDomain() }

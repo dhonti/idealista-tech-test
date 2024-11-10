@@ -1,5 +1,13 @@
 <resources>
     <string name="app_name">Idealista Tech Test</string>
 
-    <string name="empty_list">El listado de propiedades es vacío</string>
+    <string name = "accept">Accept</string>
+
+    <string name="exception_bad_request">The request made is not valid</string>
+    <string name="exception_connection">A problem occurred while making the indicated request. Check your internet connection and try again</string>
+    <string name="exception_server_error">A problem occurred while communicating with the server. If the problem persists contact the administrator</string>
+    <string name="exception_general">An error occurred while performing the requested operation</string>
+    <string name="exception_request">The indicated operation could not be performed</string>
+
+    <string name="empty_list">Current properties list is empty</string>
 </resources>

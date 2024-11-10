@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.ViewModelProvider
-import com.dhontiveros.idealistatechtest.BR
+//import com.dhontiveros.idealistatechtest.BR
 
 abstract class BaseFragmentVM<VB : ViewDataBinding, VM : BaseViewModel<*, *>>(@LayoutRes private val layoutResId: Int) :
     BaseFragment<VB>(layoutResId) {
@@ -31,7 +31,7 @@ abstract class BaseFragmentVM<VB : ViewDataBinding, VM : BaseViewModel<*, *>>(@L
     }
 
     private fun doDataBinding() {
-        binding.setVariable(BR.viewModel, viewModel)
+//        binding.setVariable(BR.viewModel, viewModel)
         binding.executePendingBindings()
     }
 }
