@@ -8,11 +8,15 @@ import com.dhontiveros.idealistatechtest.presentation.base.listadapter.BaseViewH
 class ListItemViewHolder(
     private val binding: RowListItemBinding,
     private val onClick: ((PropertyListItem) -> Unit)? = null,
+    private val onFavUpdate: ((PropertyListItem, Int) -> Unit)? = null,
 ) : BaseViewHolder<PropertyListItem, RowListItemBinding>(binding) {
 
     init {
         binding.root.setOnClickListener {
             getRowItem()?.let { onClick?.invoke(it) }
+        }
+        binding.btFav.setOnClickListener{
+            getRowItem()?.let { onFavUpdate?.invoke(it, adapterPosition) }
         }
     }
 

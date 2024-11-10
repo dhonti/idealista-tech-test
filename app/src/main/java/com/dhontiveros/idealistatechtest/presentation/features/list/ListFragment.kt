@@ -26,7 +26,11 @@ class ListFragment : BaseFragmentVM<FragmentListBinding, ListViewModel>(R.layout
             },
             onClick = { item ->
                 viewModel.getPropertyById(item.propertyCode.toInt())
-            })
+            },
+            onFavUpdate = { item, indexPos ->
+                viewModel.updateFavProperty(item, indexPos)
+            }
+        )
     }
 
     override fun getViewModelClass(): Class<ListViewModel> = ListViewModel::class.java
@@ -67,12 +71,13 @@ class ListFragment : BaseFragmentVM<FragmentListBinding, ListViewModel>(R.layout
         observeEffect<ListContract.Effect>(viewModel = viewModel) {
             when (it) {
                 is ListContract.Effect.GoDetail -> {
-                    val value = ListFragmentDirections.actionListToDetail()
-                    value.arguments
-
                     val action = ListFragmentDirections.actionListToDetail()
                     action.item = it.item
                     findNavController().navigate(action)
+                }
+
+                is ListContract.Effect.UpdateFav -> {
+                    adapter.updateItem(it.indexPos, it.isFav)
                 }
             }
         }

@@ -22,6 +22,7 @@ class ListContract {
 
     sealed class Effect : BaseUIEffect {
         data class GoDetail(val item: PropertyDetail) : Effect()
+        data class UpdateFav(val indexPos: Int, val isFav: Boolean) : Effect()
     }
 
 }

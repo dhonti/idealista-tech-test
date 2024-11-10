@@ -9,7 +9,8 @@ import com.dhontiveros.idealistatechtest.presentation.base.listadapter.BaseRecyc
 
 class ListItemsAdapter (
     private val onChange: ((MutableList<PropertyListItem>) -> Unit)? = null,
-    private val onClick: ((PropertyListItem) -> Unit)? = null
+    private val onClick: ((PropertyListItem) -> Unit)? = null,
+    private val onFavUpdate: ((PropertyListItem, Int) -> Unit)? = null
 ) : BaseRecyclerAdapter<PropertyListItem, RowListItemBinding, ListItemViewHolder>(PropertyItemDiffUtil()){
 
     override fun onChangedList(
@@ -24,7 +25,15 @@ class ListItemsAdapter (
             LayoutInflater.from(parent.context),
             parent,
             false)
-        return ListItemViewHolder(binding, onClick)
+        return ListItemViewHolder(binding, onClick, onFavUpdate)
+    }
+
+    fun updateItem(indexPos: Int, isFav: Boolean){
+        val result = currentList.toMutableList().apply {
+            val updatedItem = this[indexPos].copy(isFavorite = isFav)
+            this[indexPos] = updatedItem
+        }
+        submitList(result)
     }
 }
 

@@ -7,9 +7,9 @@ import kotlinx.coroutines.flow.flow
 
 abstract class BaseUseCase<Result, Params> {
 
-    abstract suspend fun buildRequest(params: Params?): Flow<Resource<Result>>
+    abstract suspend fun buildRequest(params: Params? = null): Flow<Resource<Result>>
 
-    suspend fun execute(params: Params?): Flow<Resource<Result>> =
+    suspend fun execute(params: Params? = null): Flow<Resource<Result>> =
         try {
             buildRequest(params)
         } catch (ex: AppException) {
