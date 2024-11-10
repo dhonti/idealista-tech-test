@@ -86,7 +86,7 @@ fun PropertyListItemDto.toDomain() = PropertyListItem(
     longitude = longitude,
     description = description,
     multimedia = multimedia.toDomain(),
-    features = features.toDomain()
+    features = features.toDomain(),
 )
 
 fun PriceInfoDto.toDomain() = PriceInfo(

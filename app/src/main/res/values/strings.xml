@@ -6,6 +6,7 @@
     <string name="button_show_less">Show less</string>
 
     <string name="content_thumbnail">Property thumbnail</string>
+    <string name="content_favorite">Property favorite</string>
     <string name="content_carousel">Property image</string>
 
     <string name="property_title">%1s in %2s</string>

@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="item"
             type="com.dhontiveros.idealistatechtest.domain.models.PropertyListItem" />
@@ -12,7 +13,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?attr/selectableItemBackground"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp"
+        android:background="@android:color/white"
         android:orientation="vertical"
         android:padding="8dp">
 
@@ -39,10 +42,10 @@
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
                 android:maxLines="1"
-                app:titleProperty="@{item}"
-                tools:text="Property title"
                 android:textSize="16sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                app:titleProperty="@{item}"
+                tools:text="Property title" />
 
             <!-- Price -->
             <TextView
@@ -51,9 +54,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:text="@{item.priceValue()}"
-                tools:text="350.000€"
                 android:textSize="16sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                tools:text="350.000€" />
         </LinearLayout>
 
         <!-- Location -->
@@ -64,16 +67,17 @@
             android:layout_marginTop="4dp"
             android:ellipsize="end"
             android:maxLines="1"
-            app:locationProperty="@{item}"
-            tools:text="Madrid, Spain"
             android:textColor="@android:color/darker_gray"
-            android:textSize="14sp" />
+            android:textSize="14sp"
+            app:locationProperty="@{item}"
+            tools:text="Madrid, Spain" />
 
         <!-- Additional details -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
+            android:gravity="center_vertical"
             android:orientation="horizontal">
 
             <!-- Rooms number -->
@@ -85,9 +89,9 @@
                 android:layout_weight="1"
                 android:drawablePadding="4dp"
                 android:gravity="center_vertical"
+                android:textColor="@android:color/black"
                 app:roomsProperty="@{item}"
-                tools:text="3 rooms"
-                android:textColor="@android:color/black" />
+                tools:text="3 rooms" />
 
             <!-- Bathrooms number -->
             <!--            android:drawableLeft="@drawable/ic_bathroom"-->
@@ -98,9 +102,9 @@
                 android:layout_weight="1"
                 android:drawablePadding="4dp"
                 android:gravity="center_vertical"
+                android:textColor="@android:color/black"
                 app:bathroomsProperty="@{item}"
-                tools:text="2 baths"
-                android:textColor="@android:color/black" />
+                tools:text="2 baths" />
 
             <!-- Surface -->
             <!--                android:drawableLeft="@drawable/ic_area"-->
@@ -111,9 +115,25 @@
                 android:layout_weight="1"
                 android:drawablePadding="4dp"
                 android:gravity="center_vertical"
+                android:textColor="@android:color/black"
                 app:surfaceProperty="@{item}"
-                tools:text="120 m²"
-                android:textColor="@android:color/black" />
+                tools:text="120 m²" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:id="@+id/bt_fav"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:contentDescription="@string/content_favorite"
+                    app:favoriteProperty="@{item}"
+                    tools:src="@drawable/ic_no_fav" />
+
+            </LinearLayout>
+
         </LinearLayout>
 
     </LinearLayout>

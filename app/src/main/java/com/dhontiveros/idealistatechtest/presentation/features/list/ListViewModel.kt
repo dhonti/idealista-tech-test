@@ -3,7 +3,7 @@ package com.dhontiveros.idealistatechtest.presentation.features.list
 import androidx.lifecycle.viewModelScope
 import com.dhontiveros.idealistatechtest.core.common.Resource
 import com.dhontiveros.idealistatechtest.domain.models.PropertyListItem
-import com.dhontiveros.idealistatechtest.domain.usecases.GetRemoteProperties
+import com.dhontiveros.idealistatechtest.domain.usecases.GetAllProperties
 import com.dhontiveros.idealistatechtest.domain.usecases.GetRemotePropertyById
 import com.dhontiveros.idealistatechtest.presentation.base.BaseUIErrorEffect
 import com.dhontiveros.idealistatechtest.presentation.base.BaseViewModel
@@ -14,7 +14,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class ListViewModel @Inject constructor(
-    private val getRemoteProperties: GetRemoteProperties,
+    private val getAllProperties: GetAllProperties,
     private val getRemotePropertyById: GetRemotePropertyById
 ) : BaseViewModel<ListContract.State, ListContract.Effect>() {
 
@@ -27,7 +27,7 @@ class ListViewModel @Inject constructor(
 
     fun getUsersList() {
         viewModelScope.launch {
-            getRemoteProperties.execute(null)
+            getAllProperties.execute(null)
                 .onStart { emit(Resource.Loading) }
                 .collect {
                     when (it) {

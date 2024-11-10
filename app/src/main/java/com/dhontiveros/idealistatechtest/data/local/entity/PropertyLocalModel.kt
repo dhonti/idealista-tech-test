@@ -4,6 +4,8 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.dhontiveros.idealistatechtest.data.local.utils.PROPERTY_TABLE
+import com.dhontiveros.idealistatechtest.domain.models.Price
+import com.dhontiveros.idealistatechtest.domain.models.PriceInfo
 import com.dhontiveros.idealistatechtest.domain.models.PropertyListItem
 
 @Entity(tableName = PROPERTY_TABLE)
@@ -29,6 +31,10 @@ data class PropertyLocalModel(
     val bathrooms: Long,
     @ColumnInfo(name = "size")
     val size: Double,
+    @ColumnInfo(name = "amount")
+    val amount: Double,
+    @ColumnInfo(name = "currency_suffix")
+    val currencySuffix: String
 )
 
 
@@ -42,6 +48,13 @@ fun PropertyLocalModel.toDomain() = PropertyListItem(
     province = province,
     rooms = rooms,
     bathrooms = bathrooms,
-    size = size
+    size = size,
+    priceInfo = PriceInfo(
+        price = Price(
+            amount = amount,
+            currencySuffix = currencySuffix
+        )
+    ),
+    isFavorite = true
 )
 

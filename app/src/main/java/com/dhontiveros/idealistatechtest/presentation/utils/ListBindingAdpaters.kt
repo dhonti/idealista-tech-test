@@ -1,5 +1,6 @@
 package com.dhontiveros.idealistatechtest.presentation.utils
 
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import com.dhontiveros.idealistatechtest.R
@@ -45,5 +46,16 @@ fun bindSurfaceProperty(textView: TextView, item: PropertyListItem) {
     textView.text = textView.context.getString(
         R.string.property_surface,
         item.surfaceValue()
+    )
+}
+
+@BindingAdapter("favoriteProperty")
+fun bindSurfaceProperty(imageView: ImageView, item: PropertyListItem) {
+    imageView.setImageResource(
+        if (item.isFavorite) {
+            R.drawable.ic_fav
+        } else {
+            R.drawable.ic_no_fav
+        }
     )
 }

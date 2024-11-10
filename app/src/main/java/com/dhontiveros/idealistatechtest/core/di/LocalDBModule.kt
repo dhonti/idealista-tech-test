@@ -25,6 +25,6 @@ class LocalDBModule {
     ).build()
 
     @Provides
-    fun provideUserDao(database: PropertyDB): PropertyDao = database.propertyDao()
+    fun provideDao(database: PropertyDB): PropertyDao = database.propertyDao()
 
 }

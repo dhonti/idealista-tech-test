@@ -17,7 +17,7 @@ class PropertyRepositoryImpl @Inject constructor(
     private val localDataSource: PropertyLocalDs
 ) : PropertyRepository {
 
-    override suspend fun getRemoteList(): Flow<Resource<List<PropertyListItem>>> = flow {
+    override suspend fun getAllProperties(): Flow<Resource<List<PropertyListItem>>> = flow {
         emit(Resource.Loading)
         emit(remoteDataSource.getRemoteList())
     }

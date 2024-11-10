@@ -30,8 +30,9 @@ data class PropertyListItem(
     val description: String? = null,
     val multimedia: Multimedia? = null,
     val features: Features? = null,
+    var isFavorite: Boolean = false
 ) : Parcelable {
-    fun priceValue(): String = priceInfo.toValue().orEmpty()
+    fun priceValue(): String = priceInfo.toValue()
     fun surfaceValue(): String {
         val formatter = NumberFormat.getNumberInstance(Locale.GERMANY).apply {
             maximumFractionDigits = 0
@@ -94,5 +95,7 @@ fun PropertyListItem.toLocalData() = PropertyLocalModel(
     district = district,
     address = address,
     municipality = municipality,
-    size = size
+    size = size,
+    amount = priceInfo.price.amount,
+    currencySuffix = priceInfo.price.currencySuffix
 )

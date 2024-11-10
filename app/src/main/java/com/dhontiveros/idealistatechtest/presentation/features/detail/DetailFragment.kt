@@ -39,10 +39,10 @@ class DetailFragment :
             isExpanded = !isExpanded
             if (isExpanded) {
                 binding.tvDescription.maxLines = Int.MAX_VALUE
-                binding.btToggleText.text = getString(R.string.button_show_more)
+                binding.btToggleText.text = getString(R.string.button_show_less)
             } else {
                 binding.tvDescription.maxLines = MAX_LINES_DESCRIPTION
-                binding.btToggleText.text = getString(R.string.button_show_less)
+                binding.btToggleText.text = getString(R.string.button_show_more)
             }
 
         }
