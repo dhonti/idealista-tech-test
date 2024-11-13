@@ -69,6 +69,7 @@ ext {
                     okHttpLogging : "com.squareup.okhttp3:logging-interceptor:${versions.okHttp}",
 
                     moshi : "com.squareup.moshi:moshi:${versions.moshi}",
+                    moshiKotlin: "com.squareup.moshi:moshi-kotlin:${versions.moshi}",
                     moshiAdapter : "com.squareup.moshi:moshi-adapters:${versions.moshi}",
             ],
             utilities = [
