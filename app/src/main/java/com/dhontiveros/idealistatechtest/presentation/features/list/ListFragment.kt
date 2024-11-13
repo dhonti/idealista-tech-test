@@ -49,8 +49,8 @@ class ListFragment : BaseFragmentVM<FragmentListBinding, ListViewModel>(R.layout
     }
 
     private fun initObservers() {
-        observeState<ListContract.State>(viewModel) {
-            when (it.listPropertiesState) {
+        observeState<ListContract.State>(viewModel) { state ->
+            when (state.listPropertiesState) {
                 is ListContract.ListsState.Idle -> {
                     binding.showList = false
                     hideLoader()
@@ -62,9 +62,11 @@ class ListFragment : BaseFragmentVM<FragmentListBinding, ListViewModel>(R.layout
 
                 is ListContract.ListsState.Done -> {
                     hideLoader()
-                    adapter.submitList(it.currentList)
-                    binding.swipeRefresh.isRefreshing = false
-                    binding.showList = it.currentList!!.isNotEmpty()
+                    state.currentList?.let {
+                        adapter.submitList(it)
+                        binding.swipeRefresh.isRefreshing = false
+                        binding.showList = it.isNotEmpty()
+                    }
                 }
             }
         }

@@ -32,10 +32,17 @@ ext {
             swipeRefresh : '1.1.0',
             timber : '5.0.1',
             room : '2.4.3',
-
+            // Testing:
             junit : '4.13.2',
             junitTest : '1.1.3',
-            espresso : '3.4.0'
+            espresso : '3.4.0',
+            hamcrest : '2.2',
+            roboelectric : '4.8',
+            androidXTestCore : '1.4.0',
+            androidXJunit : '1.1.3',
+            archCompTesting : '2.1.0',
+            mockito : '4.0.0',
+            fragmentTesting: '1.5.3',
     ]
 
     implementationLibs = [
@@ -72,6 +79,10 @@ ext {
             persistence = [
                     room : "androidx.room:room-runtime:${versions.room}",
                     roomKtx: "androidx.room:room-ktx:${versions.room}"
+            ],
+            testing = [
+                    junitKtx: "androidx.test.ext:junit-ktx:1.1.3",
+                    espresso: "androidx.test.espresso:espresso-idling-resource:${versions.espresso}"
             ]
 
     ]
@@ -95,11 +106,29 @@ ext {
     ]
 
     testLibs = [
-            junit : "junit:junit:${versions.junit}"
+            junit : "junit:junit:${versions.junit}",
+            kotlinCoroutinesTest: "org.jetbrains.kotlinx:kotlinx-coroutines-test:${versions.kotlinCoroutines}",
+
+            hamecrest: "org.hamcrest:hamcrest:${versions.hamcrest}",
+            roboelectric: "org.robolectric:robolectric:${versions.roboelectric}",
+            androidXTestCore: "androidx.test:core-ktx:${versions.androidXTestCore}",
+            androidXJunit: "androidx.test.ext:junit-ktx:${versions.androidXJunit}",
+            archCompTesting: "androidx.arch.core:core-testing:${versions.archCompTesting}",
+            mockitoCore: "org.mockito:mockito-core:${versions.mockito}",
+            mockito: "org.mockito.kotlin:mockito-kotlin:${versions.mockito}",
+            mockitoInline: "org.mockito:mockito-inline:${versions.mockito}",
+            mockWebServer: "com.squareup.okhttp3:mockwebserver:${versions.okHttp}",
+
+            daggerHilt: "com.google.dagger:hilt-android-testing:${versions.daggerHilt}"
     ]
 
     androidTestLibs = [
             junit : "androidx.test.ext:junit:${versions.junitTest}",
-            espresso : "androidx.test.espresso:espresso-core:${versions.espresso}"
+            espresso : "androidx.test.espresso:espresso-core:${versions.espresso}",
+            espressoContrib : "androidx.test.espresso:espresso-contrib:${versions.espresso}",
+            espressoIntents : "androidx.test.espresso:espresso-intents:${versions.espresso}",
+            espressoIdlingRes : "androidx.test.espresso:espresso-idling-resource:${versions.espresso}",
+
+            daggerHilt: "com.google.dagger:hilt-android-testing:${versions.daggerHilt}",
     ]
 }

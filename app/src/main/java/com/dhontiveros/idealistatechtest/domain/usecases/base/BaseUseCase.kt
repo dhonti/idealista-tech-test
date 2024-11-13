@@ -9,7 +9,7 @@ abstract class BaseUseCase<Result, Params> {
 
     abstract suspend fun buildRequest(params: Params? = null): Flow<Resource<Result>>
 
-    suspend fun execute(params: Params? = null): Flow<Resource<Result>> =
+    suspend operator fun invoke(params: Params? = null): Flow<Resource<Result>> =
         try {
             buildRequest(params)
         } catch (ex: AppException) {

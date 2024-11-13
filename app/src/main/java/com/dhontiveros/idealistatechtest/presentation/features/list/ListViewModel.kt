@@ -3,12 +3,12 @@ package com.dhontiveros.idealistatechtest.presentation.features.list
 import androidx.lifecycle.viewModelScope
 import com.dhontiveros.idealistatechtest.core.common.Resource
 import com.dhontiveros.idealistatechtest.domain.models.PropertyListItem
-import com.dhontiveros.idealistatechtest.domain.usecases.GetAllProperties
-import com.dhontiveros.idealistatechtest.domain.usecases.GetRemotePropertyById
-import com.dhontiveros.idealistatechtest.domain.usecases.RemoveFavProperty
-import com.dhontiveros.idealistatechtest.domain.usecases.SaveFavProperty
+import com.dhontiveros.idealistatechtest.domain.usecases.RemoveFavPropertyImpl
+import com.dhontiveros.idealistatechtest.domain.usecases.SaveFavPropertyImpl
 import com.dhontiveros.idealistatechtest.presentation.base.BaseUIErrorEffect
 import com.dhontiveros.idealistatechtest.presentation.base.BaseViewModel
+import com.dhontiveros.idealistatechtest.presentation.usecases.GetAllProperties
+import com.dhontiveros.idealistatechtest.presentation.usecases.GetRemotePropertyById
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
@@ -17,8 +17,8 @@ import javax.inject.Inject
 @HiltViewModel
 class ListViewModel @Inject constructor(
     private val getAllProperties: GetAllProperties,
-    private val saveFavProperties: SaveFavProperty,
-    private val removeFavProperty: RemoveFavProperty,
+    private val saveFavProperties: SaveFavPropertyImpl,
+    private val removeFavProperty: RemoveFavPropertyImpl,
     private val getRemotePropertyById: GetRemotePropertyById
 ) : BaseViewModel<ListContract.State, ListContract.Effect>() {
 
@@ -31,7 +31,7 @@ class ListViewModel @Inject constructor(
 
     fun getUsersList() {
         viewModelScope.launch {
-            getAllProperties.execute(null)
+            getAllProperties()
                 .onStart { emit(Resource.Loading) }
                 .collect {
                     when (it) {
@@ -72,7 +72,7 @@ class ListViewModel @Inject constructor(
 
     fun getPropertyById(id: Int) {
         viewModelScope.launch {
-            getRemotePropertyById.execute(id)
+            getRemotePropertyById(id)
                 .onStart { emit(Resource.Loading) }
                 .collect {
                     when (it) {
@@ -114,7 +114,7 @@ class ListViewModel @Inject constructor(
 
     private fun saveFav(item: PropertyListItem, indexPos: Int) {
         viewModelScope.launch {
-            saveFavProperties.execute(item)
+            saveFavProperties(item)
                 .onStart { emit(Resource.Loading) }
                 .collect {
                     when (it) {
@@ -128,7 +128,12 @@ class ListViewModel @Inject constructor(
 
                         is Resource.Success -> {
                             setState { copy(listPropertiesState = ListContract.ListsState.Done) }
-                            setEffect { ListContract.Effect.UpdateFav(indexPos = indexPos, isFav = true) }
+                            setEffect {
+                                ListContract.Effect.UpdateFav(
+                                    indexPos = indexPos,
+                                    isFav = true
+                                )
+                            }
                         }
 
                         is Resource.Error -> {
@@ -142,7 +147,7 @@ class ListViewModel @Inject constructor(
 
     private fun removeFav(item: PropertyListItem, indexPos: Int) {
         viewModelScope.launch {
-            removeFavProperty.execute(item)
+            removeFavProperty(item)
                 .onStart { emit(Resource.Loading) }
                 .collect {
                     when (it) {
@@ -156,7 +161,12 @@ class ListViewModel @Inject constructor(
 
                         is Resource.Success -> {
                             setState { copy(listPropertiesState = ListContract.ListsState.Done) }
-                            setEffect { ListContract.Effect.UpdateFav(indexPos = indexPos, isFav = false) }
+                            setEffect {
+                                ListContract.Effect.UpdateFav(
+                                    indexPos = indexPos,
+                                    isFav = false
+                                )
+                            }
                         }
 
                         is Resource.Error -> {

@@ -5,7 +5,7 @@ import com.dhontiveros.idealistatechtest.domain.exceptions.AppException
 import com.dhontiveros.idealistatechtest.domain.models.PropertyListItem
 import com.dhontiveros.idealistatechtest.domain.qualifiers.IODispatcher
 import com.dhontiveros.idealistatechtest.domain.repository.PropertyRepository
-import com.dhontiveros.idealistatechtest.domain.usecases.base.BaseUseCase
+import com.dhontiveros.idealistatechtest.presentation.usecases.GetAllProperties
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.filter
@@ -14,31 +14,28 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import javax.inject.Inject
 
-class GetAllProperties @Inject constructor(
+open class GetAllPropertiesImpl @Inject constructor(
     @IODispatcher private val dispatcherIO: CoroutineDispatcher,
     private val repository: PropertyRepository
-) : BaseUseCase<List<PropertyListItem>, Nothing>() {
+) : GetAllProperties() {
 
     override suspend fun buildRequest(params: Nothing?): Flow<Resource<List<PropertyListItem>>> =
         flow {
             val resourceRemoteList = repository.getAllProperties().filter { it !is Resource.Loading }.first()
             val resourceLocalList = repository.getLocalFavProperties().filter { it !is Resource.Loading }.first()
 
-            val remoteList = when (resourceRemoteList) {
-                is Resource.Success -> resourceRemoteList.data
-                is Resource.Error -> {
-                    emit(Resource.Error(AppException.RequestException))
-                    return@flow
+            if( resourceRemoteList is Resource.Success ){
+                val remoteList = resourceRemoteList.data
+                if( resourceLocalList is Resource.Success ){
+                    val localList = resourceLocalList.data
+                    val result = markFavoritesInRemoteList(remoteList, localList)
+                    emit(Resource.Success(result))
+                } else {
+                    emit(resourceLocalList)
                 }
-
-                else -> emptyList()
+            } else {
+                emit(resourceRemoteList)
             }
-            val localList = when (resourceLocalList) {
-                is Resource.Success -> resourceLocalList.data
-                else -> emptyList()
-            }
-            val result = markFavoritesInRemoteList(remoteList, localList)
-            emit(Resource.Success(result))
         }.flowOn(dispatcherIO)
 
 
