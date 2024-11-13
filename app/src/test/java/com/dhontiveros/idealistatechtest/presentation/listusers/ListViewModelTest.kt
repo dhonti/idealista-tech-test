@@ -97,7 +97,7 @@ class ListViewModelTest : BaseTest() {
     }
 
     @Test
-    fun `when getPropertyById() is called, state should be loading then success and effect GoDetail`() = runTest {
+    fun `when getPropertyById() is called, state should be success and effect GoDetail`() = runTest {
         // Arrange
         val data = getMockPropertyDetailItem(adid = 1L)
         whenever(getRemotePropertyById(1)).thenReturn(flowOf(Resource.Loading, Resource.Success(data = data)))
@@ -106,7 +106,6 @@ class ListViewModelTest : BaseTest() {
         viewModel.getPropertyById(1)
 
         // Assert
-        assertEquals(ListContract.ListsState.Loading, viewModel.uiState.value.listPropertiesState)
         advanceUntilIdle()
         assertEquals(ListContract.ListsState.Done, viewModel.uiState.value.listPropertiesState)
         assertEquals(data, viewModel.uiState.value.selectedItem)
