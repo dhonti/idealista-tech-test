@@ -22,8 +22,6 @@ data class PropertyDetail(
     val moreCharacteristics: MoreCharacteristics,
     val energyCertification: EnergyCertification
 ) : Parcelable {
-    fun adidValue(): String = adid.toString()
-
     fun priceValue(): String = priceInfoDetail.toValue()
 }
 

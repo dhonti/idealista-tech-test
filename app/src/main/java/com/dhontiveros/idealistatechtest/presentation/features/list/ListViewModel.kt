@@ -3,12 +3,12 @@ package com.dhontiveros.idealistatechtest.presentation.features.list
 import androidx.lifecycle.viewModelScope
 import com.dhontiveros.idealistatechtest.core.common.Resource
 import com.dhontiveros.idealistatechtest.domain.models.PropertyListItem
-import com.dhontiveros.idealistatechtest.domain.usecases.RemoveFavPropertyImpl
-import com.dhontiveros.idealistatechtest.domain.usecases.SaveFavPropertyImpl
 import com.dhontiveros.idealistatechtest.presentation.base.BaseUIErrorEffect
 import com.dhontiveros.idealistatechtest.presentation.base.BaseViewModel
 import com.dhontiveros.idealistatechtest.presentation.usecases.GetAllProperties
 import com.dhontiveros.idealistatechtest.presentation.usecases.GetRemotePropertyById
+import com.dhontiveros.idealistatechtest.presentation.usecases.RemoveFavProperty
+import com.dhontiveros.idealistatechtest.presentation.usecases.SaveFavProperty
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
@@ -17,8 +17,8 @@ import javax.inject.Inject
 @HiltViewModel
 class ListViewModel @Inject constructor(
     private val getAllProperties: GetAllProperties,
-    private val saveFavProperties: SaveFavPropertyImpl,
-    private val removeFavProperty: RemoveFavPropertyImpl,
+    private val saveFavProperties: SaveFavProperty,
+    private val removeFavProperty: RemoveFavProperty,
     private val getRemotePropertyById: GetRemotePropertyById
 ) : BaseViewModel<ListContract.State, ListContract.Effect>() {
 

@@ -58,6 +58,7 @@ dependencies {
         annotationProcessor it.values()
     }
     testImplementation testLibs.values()
+    testImplementation 'org.testng:testng:6.9.6'
     androidTestImplementation androidTestLibs.values()
 }
 

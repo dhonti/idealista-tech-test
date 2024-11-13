@@ -22,10 +22,9 @@ open class GetAllPropertiesImpl @Inject constructor(
     override suspend fun buildRequest(params: Nothing?): Flow<Resource<List<PropertyListItem>>> =
         flow {
             val resourceRemoteList = repository.getAllProperties().filter { it !is Resource.Loading }.first()
-            val resourceLocalList = repository.getLocalFavProperties().filter { it !is Resource.Loading }.first()
-
             if( resourceRemoteList is Resource.Success ){
                 val remoteList = resourceRemoteList.data
+                val resourceLocalList = repository.getLocalFavProperties().filter { it !is Resource.Loading }.first()
                 if( resourceLocalList is Resource.Success ){
                     val localList = resourceLocalList.data
                     val result = markFavoritesInRemoteList(remoteList, localList)
