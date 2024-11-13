@@ -22,7 +22,6 @@ import org.junit.Before
 import org.junit.Test
 import org.mockito.Mock
 import org.mockito.MockitoAnnotations
-import org.mockito.kotlin.any
 import org.mockito.kotlin.whenever
 
 @OptIn(ExperimentalCoroutinesApi::class)
@@ -83,7 +82,7 @@ class ListViewModelTest : BaseTest() {
     }
 
     @Test
-    fun `when getUsersList returns error, state should handle error`() = runTest {
+    fun `when getUsersList() returns error, state should handle error`() = runTest {
         // Arrange
         val exception = AppException.GeneralException
         whenever(getAllProperties()).thenReturn(flowOf(Resource.Error(exception)))
@@ -98,10 +97,10 @@ class ListViewModelTest : BaseTest() {
     }
 
     @Test
-    fun `when getPropertyById is called, state should be loading then success and effect GoDetail`() = runTest {
+    fun `when getPropertyById() is called, state should be loading then success and effect GoDetail`() = runTest {
         // Arrange
-        val data = getMockPropertyDetailItem()
-        whenever(getRemotePropertyById(any())).thenReturn(flowOf(Resource.Success(data = data)))
+        val data = getMockPropertyDetailItem(adid = 1L)
+        whenever(getRemotePropertyById(1)).thenReturn(flowOf(Resource.Loading, Resource.Success(data = data)))
 
         // Act
         viewModel.getPropertyById(1)
@@ -115,9 +114,9 @@ class ListViewModelTest : BaseTest() {
     }
 
     @Test
-    fun `when updateFavProperty is called for a favorite item, should call removeFav`() = runTest {
+    fun `when updateFavProperty() is called for a favorite item, should call removeFav`() = runTest {
         // Arrange
-        val property = getMockPropertyListItem()
+        val property = getMockPropertyListItem(isFavorite = true)
         whenever(removeFavProperty(property)).thenReturn(flowOf(Resource.Loading, Resource.Success(data = true)))
 
         // Act
@@ -130,9 +129,9 @@ class ListViewModelTest : BaseTest() {
     }
 
     @Test
-    fun `when updateFavProperty is called for a non-favorite item, should call saveFav`() = runTest {
+    fun `when updateFavProperty() is called for a non-favorite item, should call saveFav`() = runTest {
         // Arrange
-        val property = getMockPropertyListItem(isFavorite = true)
+        val property = getMockPropertyListItem(isFavorite = false)
         whenever(saveFavProperties(property)).thenReturn(flowOf(Resource.Loading, Resource.Success(data = true)))
 
         // Act
