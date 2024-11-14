@@ -43,6 +43,7 @@
                 android:ellipsize="end"
                 android:maxLines="1"
                 android:textSize="16sp"
+                android:textColor="@color/black"
                 android:textStyle="bold"
                 app:titleProperty="@{item}"
                 tools:text="Property title" />
@@ -53,6 +54,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
+                android:textColor="@color/black"
                 android:text="@{item.priceValue()}"
                 android:textSize="16sp"
                 android:textStyle="bold"
@@ -122,7 +124,7 @@
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1.2">
+                android:layout_weight="1.5">
 
                 <TextView
                     android:id="@+id/tvFavDate"
