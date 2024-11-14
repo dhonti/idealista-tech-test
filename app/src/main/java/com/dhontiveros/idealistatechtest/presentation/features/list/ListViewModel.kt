@@ -23,10 +23,6 @@ class ListViewModel @Inject constructor(
     private val getRemotePropertyById: GetRemotePropertyById
 ) : BaseViewModel<ListContract.State, ListContract.Effect>() {
 
-    init {
-        getUsersList()
-    }
-
     override fun createInitialState(): ListContract.State =
         ListContract.State(ListContract.ListsState.Idle)
 

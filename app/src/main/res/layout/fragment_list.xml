@@ -39,6 +39,7 @@
             android:layout_height="wrap_content"
             android:text="@string/empty_list"
             android:textAlignment="center"
+            android:textColor="@color/black"
             app:layout_constraintBottom_toBottomOf="parent"
 
             app:layout_constraintEnd_toEndOf="parent"
