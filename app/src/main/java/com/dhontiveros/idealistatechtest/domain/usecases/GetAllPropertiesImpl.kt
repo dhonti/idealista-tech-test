@@ -1,7 +1,6 @@
 package com.dhontiveros.idealistatechtest.domain.usecases
 
 import com.dhontiveros.idealistatechtest.core.common.Resource
-import com.dhontiveros.idealistatechtest.domain.exceptions.AppException
 import com.dhontiveros.idealistatechtest.domain.models.PropertyListItem
 import com.dhontiveros.idealistatechtest.domain.qualifiers.IODispatcher
 import com.dhontiveros.idealistatechtest.domain.repository.PropertyRepository
@@ -42,10 +41,10 @@ open class GetAllPropertiesImpl @Inject constructor(
         remoteList: List<PropertyListItem>,
         localList: List<PropertyListItem>
     ): List<PropertyListItem> {
-        val favoriteCodes = localList.filter { it.isFavorite }.map { it.propertyCode }.toSet()
+        val favoriteCodes = localList.filter { it.isFavorite }.map { it.propertyCode to it.dateFav }.toSet().toMap()
         return remoteList.map { property ->
-            if (property.propertyCode in favoriteCodes) {
-                property.copy(isFavorite = true)
+            if( favoriteCodes.containsKey(property.propertyCode) ){
+                property.copy(isFavorite = true, dateFav = favoriteCodes[property.propertyCode] )
             } else {
                 property
             }

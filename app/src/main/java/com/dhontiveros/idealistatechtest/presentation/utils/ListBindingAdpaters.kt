@@ -5,6 +5,9 @@ import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import com.dhontiveros.idealistatechtest.R
 import com.dhontiveros.idealistatechtest.domain.models.PropertyListItem
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 @BindingAdapter("titleProperty")
 fun bindTitleProperty(textView: TextView, item: PropertyListItem) {
@@ -58,4 +61,15 @@ fun bindSurfaceProperty(imageView: ImageView, item: PropertyListItem) {
             R.drawable.ic_no_fav
         }
     )
+}
+
+@BindingAdapter("dateFavProperty")
+fun bindDateFavProperty(textView: TextView, item: PropertyListItem){
+    textView.text = item.dateFav?.toDateString().orEmpty()
+}
+
+fun Long.toDateString(): String {
+    val sdf = SimpleDateFormat("dd/MM/yyyy HH:mm:ss", Locale.getDefault())
+    val date = Date(this)
+    return sdf.format(date)
 }

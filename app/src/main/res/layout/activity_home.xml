@@ -3,20 +3,37 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <data>
+        <variable name="titleValue" type="String" />
+        <variable name="showFavButton" type="Boolean" />
+        <variable name="showBackButton" type="Boolean" />
+    </data>
+
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".presentation.features.home.HomeActivity">
+
+        <include
+            android:id="@+id/toolbar"
+            app:titleValue="@{titleValue}"
+            app:showFavButton="@{showFavButton}"
+            app:showBackButton="@{showBackButton}"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            layout="@layout/toolbar" />
 
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/nav_container"
             android:name="androidx.navigation.fragment.NavHostFragment"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             app:defaultNavHost="true"
             app:navGraph="@navigation/home_navigation" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
 
 </layout>
 

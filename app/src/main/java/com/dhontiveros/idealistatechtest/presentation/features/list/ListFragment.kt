@@ -11,6 +11,7 @@ import com.dhontiveros.idealistatechtest.core.extensions.showLoader
 import com.dhontiveros.idealistatechtest.core.extensions.showNotification
 import com.dhontiveros.idealistatechtest.databinding.FragmentListBinding
 import com.dhontiveros.idealistatechtest.presentation.base.BaseFragmentVM
+import com.dhontiveros.idealistatechtest.presentation.features.HomeActivity
 import com.dhontiveros.idealistatechtest.presentation.features.list.adapter.ListItemsAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import okhttp3.internal.toImmutableList
@@ -36,8 +37,22 @@ class ListFragment : BaseFragmentVM<FragmentListBinding, ListViewModel>(R.layout
     override fun getViewModelClass(): Class<ListViewModel> = ListViewModel::class.java
 
     override fun initViewComponents() {
+        (activity as? HomeActivity)?.setToolbarAttrs(
+            titleContent = getString(R.string.list_fragment_title),
+            showFav = true,
+            onFavButtonAction = {
+                findNavController().navigate(ListFragmentDirections.actionListToFavorites())
+            }
+        )
+
         initAdapterList()
         initObservers()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        viewModel.getUsersList()
+        (activity as? HomeActivity)?.showHideBackButton()
     }
 
     private fun initAdapterList() {
@@ -79,7 +94,7 @@ class ListFragment : BaseFragmentVM<FragmentListBinding, ListViewModel>(R.layout
                 }
 
                 is ListContract.Effect.UpdateFav -> {
-                    adapter.updateItem(it.indexPos, it.isFav)
+                    adapter.updateItem(it.indexPos, it.isFav, it.dateSaveFav)
                 }
             }
         }

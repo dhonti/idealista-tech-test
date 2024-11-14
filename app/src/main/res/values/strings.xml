@@ -8,6 +8,10 @@
     <string name="content_thumbnail">Property thumbnail</string>
     <string name="content_favorite">Property favorite</string>
     <string name="content_carousel">Property image</string>
+    <string name="content_toolbar_fav">Upper favorites button</string>
+
+    <string name="list_fragment_title">Properties list</string>
+    <string name="favorites_fragment_title">Favorites list</string>
 
     <string name="property_title">%1s in %2s</string>
     <string name="property_title_detail">%1s in %2s</string>

@@ -28,9 +28,9 @@ class ListItemsAdapter (
         return ListItemViewHolder(binding, onClick, onFavUpdate)
     }
 
-    fun updateItem(indexPos: Int, isFav: Boolean){
+    fun updateItem(indexPos: Int, isFav: Boolean, dateSaveFav: Long?){
         val result = currentList.toMutableList().apply {
-            val updatedItem = this[indexPos].copy(isFavorite = isFav)
+            val updatedItem = this[indexPos].copy(isFavorite = isFav, dateFav = dateSaveFav)
             this[indexPos] = updatedItem
         }
         submitList(result)

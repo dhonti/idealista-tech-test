@@ -122,12 +122,26 @@
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1">
+                android:layout_weight="1.2">
+
+                <TextView
+                    android:id="@+id/tvFavDate"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:textSize="12sp"
+                    android:textColor="@android:color/darker_gray"
+                    android:textAlignment="textStart"
+                    tools:text="12/08/2024\nHH:mm:ss"
+                    dateFavProperty="@{item}"
+                    android:layout_height="wrap_content"
+                    />
 
                 <ImageView
                     android:id="@+id/bt_fav"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="10dp"
                     android:contentDescription="@string/content_favorite"
                     app:favoriteProperty="@{item}"
                     tools:src="@drawable/ic_no_fav" />

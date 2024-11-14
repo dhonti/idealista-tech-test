@@ -11,6 +11,7 @@ import com.dhontiveros.idealistatechtest.core.extensions.showLoader
 import com.dhontiveros.idealistatechtest.core.extensions.showNotification
 import com.dhontiveros.idealistatechtest.databinding.FragmentFavoritesBinding
 import com.dhontiveros.idealistatechtest.presentation.base.BaseFragmentVM
+import com.dhontiveros.idealistatechtest.presentation.features.HomeActivity
 import com.dhontiveros.idealistatechtest.presentation.features.list.adapter.ListItemsAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import okhttp3.internal.toImmutableList
@@ -37,6 +38,8 @@ class FavoritesFragment :
     override fun getViewModelClass(): Class<FavoritesViewModel> = FavoritesViewModel::class.java
 
     override fun initViewComponents() {
+        (activity as? HomeActivity)?.setToolbarAttrs(getString(R.string.favorites_fragment_title))
+
         initAdapterList()
         initObservers()
     }

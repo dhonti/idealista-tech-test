@@ -115,7 +115,8 @@ class ListViewModel @Inject constructor(
 
     private fun saveFav(item: PropertyListItem, indexPos: Int) {
         viewModelScope.launch {
-            item.dateFav = Calendar.getInstance().timeInMillis
+            val dateSaveFav = Calendar.getInstance().timeInMillis
+            item.dateFav = dateSaveFav
             saveFavProperty(item)
                 .onStart { emit(Resource.Loading) }
                 .collect {
@@ -133,7 +134,8 @@ class ListViewModel @Inject constructor(
                             setEffect {
                                 ListContract.Effect.UpdateFav(
                                     indexPos = indexPos,
-                                    isFav = true
+                                    isFav = true,
+                                    dateSaveFav = dateSaveFav
                                 )
                             }
                         }
@@ -166,7 +168,8 @@ class ListViewModel @Inject constructor(
                             setEffect {
                                 ListContract.Effect.UpdateFav(
                                     indexPos = indexPos,
-                                    isFav = false
+                                    isFav = false,
+                                    dateSaveFav = null
                                 )
                             }
                         }
