@@ -30,7 +30,8 @@ data class PropertyListItem(
     val description: String? = null,
     val multimedia: Multimedia? = null,
     val features: Features? = null,
-    var isFavorite: Boolean = false
+    var isFavorite: Boolean = false,
+    var dateFav: Long? = null
 ) : Parcelable {
     fun priceValue(): String = priceInfo.toValue()
     fun surfaceValue(): String {
@@ -97,5 +98,6 @@ fun PropertyListItem.toLocalData() = PropertyLocalModel(
     municipality = municipality,
     size = size,
     amount = priceInfo.price.amount,
-    currencySuffix = priceInfo.price.currencySuffix
+    currencySuffix = priceInfo.price.currencySuffix,
+    dateFav = dateFav ?: 0L
 )

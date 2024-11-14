@@ -19,6 +19,30 @@
             app:popEnterAnim="@anim/wait_anim"
             app:popExitAnim="@anim/slide_right" />
 
+        <action
+            android:id="@+id/action_list_to_favorites"
+            app:destination="@id/favorites"
+            app:enterAnim="@anim/slide_left"
+            app:exitAnim="@anim/wait_anim"
+            app:popEnterAnim="@anim/wait_anim"
+            app:popExitAnim="@anim/slide_right" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/favorites"
+        android:name="com.dhontiveros.idealistatechtest.presentation.features.favorites.FavoritesFragment"
+        android:label="favorites"
+        tools:layout="@layout/fragment_favorites">
+
+        <action
+            android:id="@+id/action_favorites_to_detail"
+            app:destination="@id/detail"
+            app:enterAnim="@anim/slide_left"
+            app:exitAnim="@anim/wait_anim"
+            app:popEnterAnim="@anim/wait_anim"
+            app:popExitAnim="@anim/slide_right" />
+
     </fragment>
 
     <fragment

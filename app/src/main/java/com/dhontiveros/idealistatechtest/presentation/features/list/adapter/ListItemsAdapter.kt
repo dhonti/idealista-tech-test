@@ -35,6 +35,11 @@ class ListItemsAdapter (
         }
         submitList(result)
     }
+
+    fun removeItem(index: Int){
+        val result = currentList.toMutableList().also { it.removeAt(index) }
+        submitList(result)
+    }
 }
 
 

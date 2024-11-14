@@ -2,16 +2,22 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "931ffaf733729629d786cdd420c87737",
+    "identityHash": "667a54c73201f44f659572a0b7ed0984",
     "entities": [
       {
         "tableName": "Property",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`code` TEXT NOT NULL, `thumbnail` TEXT NOT NULL, `type` TEXT NOT NULL, `address` TEXT NOT NULL, `district` TEXT NOT NULL, `municipality` TEXT NOT NULL, `province` TEXT NOT NULL, `rooms` INTEGER NOT NULL, `bathrooms` INTEGER NOT NULL, `size` REAL NOT NULL, `amount` REAL NOT NULL, `currency_suffix` TEXT NOT NULL, PRIMARY KEY(`code`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`code` TEXT NOT NULL, `date_fav` INTEGER NOT NULL, `thumbnail` TEXT NOT NULL, `type` TEXT NOT NULL, `address` TEXT NOT NULL, `district` TEXT NOT NULL, `municipality` TEXT NOT NULL, `province` TEXT NOT NULL, `rooms` INTEGER NOT NULL, `bathrooms` INTEGER NOT NULL, `size` REAL NOT NULL, `amount` REAL NOT NULL, `currency_suffix` TEXT NOT NULL, PRIMARY KEY(`code`))",
         "fields": [
           {
             "fieldPath": "code",
             "columnName": "code",
             "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "dateFav",
+            "columnName": "date_fav",
+            "affinity": "INTEGER",
             "notNull": true
           },
           {
@@ -94,7 +100,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '931ffaf733729629d786cdd420c87737')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '667a54c73201f44f659572a0b7ed0984')"
     ]
   }
 }

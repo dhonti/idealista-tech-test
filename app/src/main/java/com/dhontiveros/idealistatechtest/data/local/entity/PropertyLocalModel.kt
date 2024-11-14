@@ -13,6 +13,8 @@ data class PropertyLocalModel(
     @PrimaryKey
     @ColumnInfo(name = "code")
     val code: String,
+    @ColumnInfo(name = "date_fav")
+    val dateFav: Long,
     @ColumnInfo(name = "thumbnail")
     val thumbnail: String,
     @ColumnInfo(name = "type")
@@ -55,6 +57,7 @@ fun PropertyLocalModel.toDomain() = PropertyListItem(
             currencySuffix = currencySuffix
         )
     ),
-    isFavorite = true
+    isFavorite = true,
+    dateFav = dateFav
 )
 

@@ -1,5 +1,6 @@
 package com.dhontiveros.idealistatechtest.presentation.features.list
 
+import android.icu.util.Calendar
 import androidx.lifecycle.viewModelScope
 import com.dhontiveros.idealistatechtest.core.common.Resource
 import com.dhontiveros.idealistatechtest.domain.models.PropertyListItem
@@ -17,7 +18,7 @@ import javax.inject.Inject
 @HiltViewModel
 class ListViewModel @Inject constructor(
     private val getAllProperties: GetAllProperties,
-    private val saveFavProperties: SaveFavProperty,
+    private val saveFavProperty: SaveFavProperty,
     private val removeFavProperty: RemoveFavProperty,
     private val getRemotePropertyById: GetRemotePropertyById
 ) : BaseViewModel<ListContract.State, ListContract.Effect>() {
@@ -114,7 +115,8 @@ class ListViewModel @Inject constructor(
 
     private fun saveFav(item: PropertyListItem, indexPos: Int) {
         viewModelScope.launch {
-            saveFavProperties(item)
+            item.dateFav = Calendar.getInstance().timeInMillis
+            saveFavProperty(item)
                 .onStart { emit(Resource.Loading) }
                 .collect {
                     when (it) {
