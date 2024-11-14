@@ -11,6 +11,16 @@
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+
+        <!-- Establece el color de fondo del Splash -->
+<!--        <item name="windowSplashScreenBackground">@color/splash_background</item>-->
+<!--        &lt;!&ndash; Opcional: configura un ícono animado en el centro del Splash &ndash;&gt;-->
+<!--        <item name="windowSplashScreenAnimatedIcon">@drawable/your_splash_icon</item>-->
         <!-- Customize your theme here. -->
     </style>
+
+    <style name="Theme.IdealistaTechTest.Splash" parent="Theme.IdealistaTechTest">
+        <item name="android:windowBackground">@color/splash_background</item>
+    </style>
+
 </resources>
