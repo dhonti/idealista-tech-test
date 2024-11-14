@@ -34,3 +34,16 @@
   - [Coroutines](https://github.com/Kotlin/kotlinx.coroutines) - Library Support for
   coroutines,provides runBlocking coroutine builder used in tests.
   - [Moshi](https://github.com/square/moshi) - A modern JSON library for Kotlin and Java.
+
+
+  ## Architecture
+
+* Modern Architecture
+  * Single activity architecture (
+  with [Navigation component](https://developer.android.com/guide/navigation/navigation-getting-started))
+  that defines navigation graphs
+  * [MVI Clean Architecture](https://blog.stackademic.com/mvi-architecture-explained-on-android-e36ee66bceaa)
+  * [Android Architecture components](https://developer.android.com/topic/libraries/architecture) ([ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel), [Navigation](https://developer.android.com/jetpack/androidx/releases/navigation))
+  * [Android KTX](https://developer.android.com/kotlin/ktx) - Jetpack Kotlin extensions
+* UI
+  * [Material design](https://material.io/design)
