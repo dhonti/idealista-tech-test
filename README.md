@@ -1,11 +1,10 @@
 # Idealista -- Technical test Challenge
 
 <p align="start">
-<img src="info/idealista_sample_1.webm" width="25%"/>
-<img src="info/idealista_sample_1.webm" width="25%"/>
-<img src="info/idealista_sample_1.webm" width="25%"/>
-<img src="info/idealista_sample_1.webm" width="25%"/>
-
+[idealista_sample_1.webm](https://github.com/user-attachments/assets/2d932e59-96c2-4d35-9842-86e36c04931a)
+[idealista_sample_2.webm](https://github.com/user-attachments/assets/2119240d-31d8-4629-ab5b-53d94fc5ae2c)
+[idealista_sample_3.webm](https://github.com/user-attachments/assets/7d9604c3-bb1d-487c-86ca-3beb2eaccaab)
+[idealista_sample_4.webm](https://github.com/user-attachments/assets/28553ae8-89ad-42cf-8a9f-ddd58f0502d2)
 
 ## Tech Stacks
 
