@@ -1,5 +1,12 @@
 # Idealista -- Technical test Challenge
 
+<p align="start">
+<img src="info/idealista_sample_1.webm" width="25%"/>
+<img src="info/idealista_sample_1.webm" width="25%"/>
+<img src="info/idealista_sample_1.webm" width="25%"/>
+<img src="info/idealista_sample_1.webm" width="25%"/>
+
+
 ## Tech Stacks
 
 - [Kotlin](https://kotlinlang.org/) 100% coverage
