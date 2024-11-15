@@ -1,4 +1,4 @@
-package com.dhontiveros.idealistatechtest.common
+package com.dhontiveros.idealistatechtest.core.utils
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.dhontiveros.idealistatechtest.presentation.common.CoroutineTestRule

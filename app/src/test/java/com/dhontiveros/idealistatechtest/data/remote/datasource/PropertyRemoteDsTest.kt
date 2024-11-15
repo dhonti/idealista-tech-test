@@ -1,6 +1,6 @@
 package com.dhontiveros.idealistatechtest.data.remote.datasource
 
-import com.dhontiveros.idealistatechtest.common.BaseTest
+import com.dhontiveros.idealistatechtest.core.utils.BaseTest
 import com.dhontiveros.idealistatechtest.core.common.Resource
 import com.dhontiveros.idealistatechtest.data.remote.api.ApiService
 import com.dhontiveros.idealistatechtest.data.remote.getMockPropertyDetailItemDto

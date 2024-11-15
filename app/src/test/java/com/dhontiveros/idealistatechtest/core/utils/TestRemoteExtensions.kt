@@ -1,4 +1,4 @@
-package com.dhontiveros.idealistatechtest.common
+package com.dhontiveros.idealistatechtest.core.utils
 
 import org.hamcrest.CoreMatchers
 import org.hamcrest.CoreMatchers.`is`

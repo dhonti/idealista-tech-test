@@ -1,4 +1,4 @@
-package com.dhontiveros.idealistatechtest.common
+package com.dhontiveros.idealistatechtest.core.utils
 
 enum class TypeFileResponse(val stringVal: String) {
 

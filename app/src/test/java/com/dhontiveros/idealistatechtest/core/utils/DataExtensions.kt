@@ -1,10 +1,11 @@
-package com.dhontiveros.idealistatechtest.common
+package com.dhontiveros.idealistatechtest.core.utils
 
 
 
 fun TypeFileResponse.getValueJson(): String? = JsonFileLoader.loadJsonString(this.stringVal)
 
-inline fun <reified T>TypeFileResponse.getEntityJson(): T? = JsonFileLoader.loadEntity<T>(this.stringVal)
+inline fun <reified T> TypeFileResponse.getEntityJson(): T? =
+    JsonFileLoader.loadEntity<T>(this.stringVal)
 
 fun String.countMatches(pattern: String): Int {
     return this.split(pattern)

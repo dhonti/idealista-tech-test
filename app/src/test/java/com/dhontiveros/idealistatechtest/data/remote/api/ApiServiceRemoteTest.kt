@@ -1,9 +1,9 @@
 package com.dhontiveros.idealistatechtest.data.remote.api
 
-import com.dhontiveros.idealistatechtest.common.BaseTest
-import com.dhontiveros.idealistatechtest.common.TypeFileResponse
-import com.dhontiveros.idealistatechtest.common.assertResponseOK
-import com.dhontiveros.idealistatechtest.common.getEntityJson
+import com.dhontiveros.idealistatechtest.core.utils.BaseTest
+import com.dhontiveros.idealistatechtest.core.utils.TypeFileResponse
+import com.dhontiveros.idealistatechtest.core.utils.assertResponseOK
+import com.dhontiveros.idealistatechtest.core.utils.getEntityJson
 import com.dhontiveros.idealistatechtest.data.remote.model.PropertyDetailDto
 import com.dhontiveros.idealistatechtest.data.remote.model.PropertyListItemDto
 import kotlinx.coroutines.ExperimentalCoroutinesApi

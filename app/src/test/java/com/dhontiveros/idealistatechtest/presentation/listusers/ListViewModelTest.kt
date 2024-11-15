@@ -1,7 +1,8 @@
 package com.dhontiveros.idealistatechtest.presentation.listusers
 
-import com.dhontiveros.idealistatechtest.common.BaseTest
 import com.dhontiveros.idealistatechtest.core.common.Resource
+import com.dhontiveros.idealistatechtest.core.di.CalendarProvider
+import com.dhontiveros.idealistatechtest.core.utils.BaseTest
 import com.dhontiveros.idealistatechtest.domain.exceptions.AppException
 import com.dhontiveros.idealistatechtest.domain.getMockPropertyDetailItem
 import com.dhontiveros.idealistatechtest.domain.getMockPropertyListItem
@@ -20,26 +21,21 @@ import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Test
-import org.mockito.Mock
 import org.mockito.MockitoAnnotations
+import org.mockito.kotlin.mock
 import org.mockito.kotlin.whenever
+import java.util.Calendar
 
 @OptIn(ExperimentalCoroutinesApi::class)
 class ListViewModelTest : BaseTest() {
 
     private lateinit var viewModel: ListViewModel
 
-    @Mock
-    private lateinit var getAllProperties: GetAllProperties
-
-    @Mock
-    private lateinit var saveFavProperties: SaveFavProperty
-
-    @Mock
-    private lateinit var removeFavProperty: RemoveFavProperty
-
-    @Mock
-    private lateinit var getRemotePropertyById: GetRemotePropertyById
+    private val getAllProperties: GetAllProperties = mock()
+    private val saveFavProperties: SaveFavProperty = mock()
+    private val removeFavProperty: RemoveFavProperty = mock()
+    private val getRemotePropertyById: GetRemotePropertyById = mock()
+    private val dateProvider: CalendarProvider = mock()
 
     @Before
     fun setUp() {
@@ -48,7 +44,8 @@ class ListViewModelTest : BaseTest() {
             getAllProperties,
             saveFavProperties,
             removeFavProperty,
-            getRemotePropertyById
+            getRemotePropertyById,
+            dateProvider
         )
     }
 
@@ -97,49 +94,77 @@ class ListViewModelTest : BaseTest() {
     }
 
     @Test
-    fun `when getPropertyById() is called, state should be success and effect GoDetail`() = runTest {
-        // Arrange
-        val data = getMockPropertyDetailItem(adid = 1L)
-        whenever(getRemotePropertyById(1)).thenReturn(flowOf(Resource.Loading, Resource.Success(data = data)))
+    fun `when getPropertyById() is called, state should be success and effect GoDetail`() =
+        runTest {
+            // Arrange
+            val data = getMockPropertyDetailItem(adid = 1L)
+            whenever(getRemotePropertyById(1)).thenReturn(
+                flowOf(
+                    Resource.Loading,
+                    Resource.Success(data = data)
+                )
+            )
 
-        // Act
-        viewModel.getPropertyById(1)
+            // Act
+            viewModel.getPropertyById(1)
 
-        // Assert
-        advanceUntilIdle()
-        assertEquals(ListContract.ListsState.Done, viewModel.uiState.value.listPropertiesState)
-        assertEquals(data, viewModel.uiState.value.selectedItem)
-        assertEquals(ListContract.Effect.GoDetail(item = data), viewModel.effect.first())
-    }
-
-    @Test
-    fun `when updateFavProperty() is called for a favorite item, should call removeFav`() = runTest {
-        // Arrange
-        val property = getMockPropertyListItem(isFavorite = true)
-        whenever(removeFavProperty(property)).thenReturn(flowOf(Resource.Loading, Resource.Success(data = true)))
-
-        // Act
-        viewModel.updateFavProperty(property, indexPos = 0)
-
-        // Assert
-        advanceUntilIdle()
-        assertEquals(ListContract.ListsState.Done, viewModel.uiState.value.listPropertiesState)
-        assertEquals(ListContract.Effect.UpdateFav(indexPos = 0, isFav = false), viewModel.effect.first())
-    }
+            // Assert
+            advanceUntilIdle()
+            assertEquals(ListContract.ListsState.Done, viewModel.uiState.value.listPropertiesState)
+            assertEquals(data, viewModel.uiState.value.selectedItem)
+            assertEquals(ListContract.Effect.GoDetail(item = data), viewModel.effect.first())
+        }
 
     @Test
-    fun `when updateFavProperty() is called for a non-favorite item, should call saveFav`() = runTest {
-        // Arrange
-        val property = getMockPropertyListItem(isFavorite = false)
-        whenever(saveFavProperties(property)).thenReturn(flowOf(Resource.Loading, Resource.Success(data = true)))
+    fun `when updateFavProperty() is called for a favorite item, should call removeFav`() =
+        runTest {
+            // Arrange
+            val property = getMockPropertyListItem(isFavorite = true)
+            whenever(removeFavProperty(property)).thenReturn(
+                flowOf(
+                    Resource.Loading,
+                    Resource.Success(data = true)
+                )
+            )
 
-        // Act
-        viewModel.updateFavProperty(property, indexPos = 0)
+            // Act
+            viewModel.updateFavProperty(property, indexPos = 0)
 
-        // Assert
-        advanceUntilIdle()
-        assertEquals(ListContract.ListsState.Done, viewModel.uiState.value.listPropertiesState)
-        assertEquals(ListContract.Effect.UpdateFav(indexPos = 0, isFav = true), viewModel.effect.first())
-    }
+            // Assert
+            advanceUntilIdle()
+            assertEquals(ListContract.ListsState.Done, viewModel.uiState.value.listPropertiesState)
+            assertEquals(
+                ListContract.Effect.UpdateFav(indexPos = 0, isFav = false),
+                viewModel.effect.first()
+            )
+        }
+
+    @Test
+    fun `when updateFavProperty() is called for a non-favorite item, should call saveFav`() =
+        runTest {
+            // Arrange
+            val saveFavDate = dateProvider.getCalendarInstanceMillis()
+            val property = getMockPropertyListItem(isFavorite = false, dateSaveFav = saveFavDate)
+            whenever(saveFavProperties(property)).thenReturn(
+                flowOf(
+                    Resource.Loading,
+                    Resource.Success(data = true)
+                )
+            )
+
+            // Act
+            viewModel.updateFavProperty(property, indexPos = 0)
+
+            // Assert
+            advanceUntilIdle()
+            assertEquals(ListContract.ListsState.Done, viewModel.uiState.value.listPropertiesState)
+            assertEquals(
+                ListContract.Effect.UpdateFav(
+                    indexPos = 0,
+                    isFav = true,
+                    dateSaveFav = saveFavDate
+                ), viewModel.effect.first()
+            )
+        }
 
 }

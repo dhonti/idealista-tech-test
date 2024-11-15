@@ -1,6 +1,6 @@
 package com.dhontiveros.idealistatechtest.domain.usecases
 
-import com.dhontiveros.idealistatechtest.common.BaseTest
+import com.dhontiveros.idealistatechtest.core.utils.BaseTest
 import com.dhontiveros.idealistatechtest.core.common.Resource
 import com.dhontiveros.idealistatechtest.domain.exceptions.AppException
 import com.dhontiveros.idealistatechtest.domain.getMockPropertyListItem

@@ -16,7 +16,7 @@ import com.dhontiveros.idealistatechtest.domain.models.PropertyDetail
 import com.dhontiveros.idealistatechtest.domain.models.PropertyListItem
 import com.dhontiveros.idealistatechtest.domain.models.Ubication
 
-fun getMockPropertyListItem(propertyCode: String = "1", isFavorite: Boolean = false) = PropertyListItem(
+fun getMockPropertyListItem(propertyCode: String = "1", isFavorite: Boolean = false, dateSaveFav: Long? = null) = PropertyListItem(
     propertyCode = propertyCode,
     thumbnail = "https://img4.idealista.com/blur/WEB_LISTING-M/0/id.pro.es.image.master/58/60/32/1273036727.webp",
     floor = "2",
@@ -58,7 +58,8 @@ fun getMockPropertyListItem(propertyCode: String = "1", isFavorite: Boolean = fa
         hasAirConditioning = true,
         hasBoxRoom = false
     ),
-    isFavorite = isFavorite
+    isFavorite = isFavorite,
+    dateFav = dateSaveFav
 )
 
 fun getMockPropertyDetailItem(adid: Long = 1L) = PropertyDetail(

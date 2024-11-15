@@ -1,4 +1,4 @@
-package com.dhontiveros.idealistatechtest.common
+package com.dhontiveros.idealistatechtest.core.utils
 
 import com.squareup.moshi.JsonAdapter
 import com.squareup.moshi.Moshi

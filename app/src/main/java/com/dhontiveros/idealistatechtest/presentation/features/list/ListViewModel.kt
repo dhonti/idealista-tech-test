@@ -1,8 +1,8 @@
 package com.dhontiveros.idealistatechtest.presentation.features.list
 
-import android.icu.util.Calendar
 import androidx.lifecycle.viewModelScope
 import com.dhontiveros.idealistatechtest.core.common.Resource
+import com.dhontiveros.idealistatechtest.core.di.CalendarProvider
 import com.dhontiveros.idealistatechtest.domain.models.PropertyListItem
 import com.dhontiveros.idealistatechtest.presentation.base.BaseUIErrorEffect
 import com.dhontiveros.idealistatechtest.presentation.base.BaseViewModel
@@ -20,7 +20,8 @@ class ListViewModel @Inject constructor(
     private val getAllProperties: GetAllProperties,
     private val saveFavProperty: SaveFavProperty,
     private val removeFavProperty: RemoveFavProperty,
-    private val getRemotePropertyById: GetRemotePropertyById
+    private val getRemotePropertyById: GetRemotePropertyById,
+    private val calendarProvider: CalendarProvider
 ) : BaseViewModel<ListContract.State, ListContract.Effect>() {
 
     override fun createInitialState(): ListContract.State =
@@ -111,7 +112,7 @@ class ListViewModel @Inject constructor(
 
     private fun saveFav(item: PropertyListItem, indexPos: Int) {
         viewModelScope.launch {
-            val dateSaveFav = Calendar.getInstance().timeInMillis
+            val dateSaveFav = calendarProvider.getCalendarInstanceMillis()
             item.dateFav = dateSaveFav
             saveFavProperty(item)
                 .onStart { emit(Resource.Loading) }
